@@ -1,5 +1,6 @@
 import { obtenerArraysPositivosYNegativosv2 } from "./for-tradicional";
 
+const numeros = [1, 2, 34, 4, -9, -6];
 function obtenerSumaDeElementos(){
     const {arreglo_positivos} = obtenerArraysPositivosYNegativosv2();
     return arreglo_positivos.reduce((acc,elemento) => acc + elemento,0);
@@ -55,4 +56,29 @@ function usuariosPorCiudad() {
         return acc;
     },{})
 }
-console.log(usuariosPorCiudad());
+//console.log(usuariosPorCiudad());
+
+
+
+function verificarTradicional(n: number = 1): boolean {
+  let contador = 0;
+  for (const numero of numeros) {
+    if (numero < 0) {
+      contador++;
+    }
+  }
+  return contador >= n;
+}
+
+function verificarConReduce(n:number = 1): boolean{
+    const cantidadNegativos = numeros.reduce((acc,elemento) => {
+        if(elemento < 0){
+            acc++;
+        }
+        return acc;
+    }, 0);
+    console.log(cantidadNegativos)
+    return cantidadNegativos >= n;
+}
+const b: boolean = verificarConReduce(2);
+console.log(b)
