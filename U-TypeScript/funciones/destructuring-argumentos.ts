@@ -17,25 +17,17 @@ interface TaxCalculationOptions {
     tax:number,
     products: Product[]
 }
-function taxCalculation(options: TaxCalculationOptions ): number[] {
+function taxCalculation({tax,products}: TaxCalculationOptions ): [number,number] {
     
-    const total = options.products.reduce((acc,product) => acc + product.price,0);
-    return [total, total * options.tax];
+    const total = products.reduce((acc,{price}) => acc + price,0);
+    return [total, total * tax];
 }
-// const optionParam: TaxCalculationOptions = {
-//     tax,
-//     products:
-// }
-const shoppingCart = [phone,tablet];
 
-const tax = 0.15;//impuesto sobre la venta
+const optionParam: TaxCalculationOptions = {
+    tax: 0.15,
+    products: [phone,tablet]
+}
+const [total, totalConImpuestos] = taxCalculation(optionParam);
 
-const result = taxCalculation({
-    tax,
-    products: shoppingCart
-})
-const [total, totalConImpuestos] = result
-
-console.log(result);
 console.log(total,totalConImpuestos);
 export {};
